@@ -1,7 +1,17 @@
 <template>
   <div class="extend-object">
-    <h3>{{info.title}}</h3>
+    <h1>{{info.title}}</h1>
+    <a-button
+      @click="changeLiked"
+      type="default"
+      size="small"
+      icon="heart"
+      class="liked-button extend-object__liked-button"
+      :class="{active__button: liked }">
+      {{titleButton}}
+    </a-button>
     <h3>{{info.price}}</h3>
+    <h3>{{info.address}}</h3>
     <h3>{{info.sellerName}}</h3>
     <a-carousel
     arrows
@@ -21,17 +31,7 @@
         :src="image"/>
       </div>
     </a-carousel>
-    <a-button
-    @click="changeLiked"
-    type="default"
-    size="small"
-    icon="heart"
-    class="button"
-    :class="{active__button: liked }">
-      Добавить в избранное
-    </a-button>
-    <h3>{{info.address}}</h3>
-    <h3>{{info.description}}</h3>
+    <h3 class="extend-object__description">{{info.description}}</h3>
   </div>
 </template>
 
@@ -43,8 +43,7 @@ export default {
   data: function () {
     return {
       info: null,
-      liked: false,
-      slideIndex: 1
+      liked: false
     }
   },
   created () {
@@ -64,55 +63,48 @@ export default {
     getImgUrl (i) {
       return this.info.images[i]
     }
+  },
+  computed: {
+    titleButton () {
+      if (this.liked) return 'В избранном'
+      else return 'Добавить в избранное'
+    }
   }
 }
 </script>
 
 <style>
-.ant-carousel >>> .slick-dots {
-  /*height: auto;*/
+@import "../style/button.css";
+
+.extend-object {
+  margin: 30px;
 }
-.ant-carousel >>> .slick-slide img {
-  border: 5px solid #fff;
-  display: block;
-  margin: auto;
-  max-width: 80%;
-}
-.ant-carousel >>> .slick-thumb {
-  bottom: -45px;
-}
-.ant-carousel >>> .slick-thumb li {
-  width: 60px;
-  height: 45px;
-}
-.ant-carousel >>> .slick-thumb li img {
-  width: 100%;
-  height: 100%;
-  filter: grayscale(100%);
-}
-.ant-carousel >>> .slick-thumb li.slick-active img {
-  filter: grayscale(0%);
+.ant-carousel {
+  max-width: 600px;
+  max-height: 900px;
 }
 .img-full {
-  max-width: 400px;
-  max-height: 400px;
+  max-width: 500px;
+  max-height: 500px;
 }
 .img-reference {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 100px;
+  max-height: 100px;
+  padding-top: 20px;
 }
-.button {
+
+.extend-object__liked-button {
+  position: static;
+  margin-bottom: 15px;
+}
+.extend-object__description {
   position: absolute;
-  bottom: 85%;
-  left: 85%;
-  cursor: pointer;
-  color: dodgerblue;
+  left: 45%;
+  top: 26%;
+  right: 10%;
+  width: auto;
+  padding: 15px;
   border: 2px solid dodgerblue;
-  font-weight: 600;
-}
-.button:hover, .active__button {
-  background: dodgerblue;
-  color: white;
-  border: 1px solid white;
+  border-radius: 5px;
 }
 </style>

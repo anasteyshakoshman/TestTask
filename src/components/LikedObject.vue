@@ -5,6 +5,8 @@
     v-if="!objects.length">
       <h2>Как добавить объявление в избранное?</h2>
       <h3>На страницах списка объявлений или объявления нажмите на сердечко рядом с заголовком.</h3>
+      <img src="../assets/screenshot1.png"/>
+      <img src="../assets/screenshot2.png"/>
     </div>
     <Object
     v-for="objectInfo in objects"
@@ -31,14 +33,18 @@ export default {
 </script>
 
 <style>
+.liked-object {
+  margin: 20px;
+}
 .liked-object__none h2, .liked-object__none h3 {
   font-weight: 500;
   text-align: center;
 }
 .liked-object__none img {
-  width: 450px;
+  height: 350px;
   border: black solid 2px;
   border-radius: 8px;
+  margin: 20px;
 }
 
 </style>

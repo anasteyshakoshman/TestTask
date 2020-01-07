@@ -3,20 +3,20 @@
     <div class="object__img">
       <img
       @click="goToExtend"
-      class="object__reference"
-      :src="info.previewImage"/>
+      :src="info.previewImage"
+      class="object__cursor"/>
       <a-button
       @click="changeLiked"
       type="default"
       size="small"
       icon="heart"
-      class="button"
+      class="liked-button object__liked-button"
       :class="{active__button: liked }"/>
     </div>
     <div class="object__info">
       <h3
       @click="goToExtend"
-      class="object__reference">
+      class="object__reference object__cursor">
         {{info.title}}
       </h3>
       <h3 class="object__price">
@@ -72,6 +72,8 @@ export default {
 }
 </script>
 <style>
+@import '../style/button.css';
+
 .object {
   font-size: small;
   display: inline-block;
@@ -79,11 +81,14 @@ export default {
   height: 292px;
   margin: 10px;
   vertical-align: middle;
+  color: dodgerblue;
+}
+.object__cursor {
+  cursor: pointer;
 }
 
 .object__reference {
   color: dodgerblue;
-  cursor: pointer;
 }
 
 .object__reference:hover {
@@ -112,17 +117,9 @@ export default {
   height: 156px;
 }
 
-.button {
+.object__liked-button {
   position: absolute;
   bottom: 85%;
   left: 85%;
-  cursor: pointer;
-  color: dodgerblue;
-  border: 1px solid dodgerblue;
-}
-.button:hover, .active__button {
-  background: dodgerblue;
-  color: white;
-  border: 1px solid white;
 }
 </style>

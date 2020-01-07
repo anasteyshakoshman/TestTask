@@ -1,7 +1,11 @@
 <template>
     <div class="home">
-      <button
-      @click="goToLiked">Избранное</button>
+      <a-button
+      type="link"
+      size="large"
+      @click="goToLiked">
+        Избранное
+      </a-button>
       <h2>Квартиры на продажу</h2>
       <Object
       v-for="objectInfo in objects"
@@ -43,8 +47,12 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-decoration: none;
+  margin: 10px;
 }
 .home h2 {
   font-weight: bold;
+}
+a-button {
+  padding: 4px;
 }
 </style>

@@ -1,0 +1,11 @@
+.liked-button {
+  cursor: pointer;
+  color: dodgerblue;
+  border: 1px solid dodgerblue;
+  font-weight: 600;
+}
+.liked-button:hover, .active__button {
+  background: dodgerblue;
+  color: white;
+  border: 1px solid white;
+}
