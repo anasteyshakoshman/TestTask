@@ -5,7 +5,6 @@
     v-if="!objects.length">
       <h2>Как добавить объявление в избранное?</h2>
       <h3>На страницах списка объявлений или объявления нажмите на сердечко рядом с заголовком.</h3>
-      <img src="../assets/screenshot1.png"/>
     </div>
     <Object
     v-for="objectInfo in objects"
@@ -23,31 +22,11 @@ export default {
   components: {
     Object
   },
-  data: function () {
-    return {
-      objects: null
+  computed: {
+    objects () {
+      return this.$store.getters.getAllObjects.filter(obj => obj.liked)
     }
-  },
-  methods: {
-    fetchData () {
-      this.objects = this.$store.getters.getAllObjects.filter(obj => obj.liked)
-    }
-  },
-  created () {
-    this.fetchData()
-  },
-  watch: {
-    '$store': 'fetchData'
   }
-  // name: 'LikedObjects',
-  // components: {
-  //   Object
-  // },
-  // computed: {
-  //   objects () {
-  //     return this.$store.getters.getAllObjects.filter(obj => obj.liked)
-  //   }
-  // }
 }
 </script>
 
