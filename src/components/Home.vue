@@ -6,7 +6,7 @@
       @click="goToLiked">
         Избранное
       </a-button>
-      <h2>Квартиры на продажу</h2>
+      <h2>Недвижимость</h2>
       <Object
       v-for="objectInfo in objects"
       :key="objectInfo.id"

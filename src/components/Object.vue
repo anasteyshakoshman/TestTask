@@ -3,7 +3,7 @@
     <div class="object__img">
       <img
       @click="goToExtend"
-      :src="info.previewImage"
+      :src="previewImage"
       class="object__cursor"/>
       <a-button
       @click="changeLiked"
@@ -17,13 +17,13 @@
       <h3
       @click="goToExtend"
       class="object__reference object__cursor">
-        {{info.title}}
+        {{title}}
       </h3>
       <h3 class="object__price">
-        {{info.price}}
+        {{price}}
       </h3>
       <h3 class="object__address">
-        {{info.address}}
+        {{address}}
       </h3>
     </div>
   </div>
@@ -45,8 +45,20 @@ export default {
     }
   },
   computed: {
-    info () {
-      return this.$store.getters.getObject(this.number)
+    title () {
+      return this.$store.getters.getObject(this.number).title
+    },
+    price () {
+      return this.$store.getters.getObject(this.number).price
+    },
+    address () {
+      return this.$store.getters.getObject(this.number).address
+    },
+    previewImage () {
+      return this.$store.getters.getObject(this.number).previewImage
+    },
+    id () {
+      return this.$store.getters.getObject(this.number).id
     }
   },
   created () {
@@ -63,8 +75,8 @@ export default {
         name: 'ExtendObject',
         component: ExtendObject,
         params: {
-          Pid: this.info.id,
-          Pnumber: this.info.number
+          Pid: this.id,
+          Pnumber: this.number
         }
       })
     }

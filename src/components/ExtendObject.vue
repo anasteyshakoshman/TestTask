@@ -1,18 +1,18 @@
 <template>
   <div class="extend-object">
-    <h1>{{info.title}}</h1>
+    <h1>{{title}}</h1>
     <a-button
-      @click="changeLiked"
-      type="default"
-      size="small"
-      icon="heart"
-      class="liked-button extend-object__liked-button"
-      :class="{active__button: liked }">
+    @click="changeLiked"
+    type="default"
+    size="small"
+    icon="heart"
+    class="liked-button extend-object__liked-button"
+    :class="{active__button: liked }">
       {{titleButton}}
     </a-button>
-    <h3>{{info.price}}</h3>
-    <h3>{{info.address}}</h3>
-    <h3>{{info.sellerName}}</h3>
+    <h3>{{price}}</h3>
+    <h3>{{address}}</h3>
+    <h3>{{sellerName}}</h3>
     <a-carousel
     arrows
     dotsClass="slick-dots slick-thumb">
@@ -24,14 +24,14 @@
         :src="getImgUrl(props.i)" />
       </a>
       <div
-      v-for="(image, index) in info.images"
+      v-for="(image, index) in images"
       :key="index">
         <img
         class="img-full"
         :src="image"/>
       </div>
     </a-carousel>
-    <h3 class="extend-object__description">{{info.description}}</h3>
+    <h3 class="extend-object__description">{{description}}</h3>
   </div>
 </template>
 
@@ -42,18 +42,28 @@ export default {
   name: 'ExtendObject',
   data: function () {
     return {
-      info: null,
-      liked: false
+      liked: false,
+      title: '',
+      price: '',
+      address: '',
+      sellerName: '',
+      images: [],
+      description: ''
     }
   },
   created () {
     axios
       .get('http://134.209.138.34/item/' + this.$route.params.Pid)
       .then((response) => {
-        this.info = response.data[0]
+        this.title = response.data[0].title
+        this.price = response.data[0].price
+        this.address = response.data[0].address
+        this.sellerName = response.data[0].sellerName
+        this.images = response.data[0].images
+        this.description = response.data[0].description
+        this.liked = this.$store.getters.getLiked(this.$route.params.Pnumber)
       })
       .catch(error => console.log(error))
-    this.liked = this.$store.getters.getLiked(this.$route.params.Pnumber)
   },
   methods: {
     changeLiked () {
@@ -61,7 +71,7 @@ export default {
       this.$store.commit('changeLiked', this.$route.params.Pnumber)
     },
     getImgUrl (i) {
-      return this.info.images[i]
+      return this.images[i]
     }
   },
   computed: {
