@@ -1,21 +1,31 @@
 <template>
   <div class="extend-object">
-    <h1>{{title}}</h1>
-    <a-button
-    @click="changeLiked"
-    type="default"
-    size="small"
-    icon="heart"
-    class="liked-button extend-object__liked-button"
-    :class="{active__button: liked }">
-      {{titleButton}}
-    </a-button>
-    <h3>{{price}}</h3>
-    <h3>{{address}}</h3>
-    <h3>{{sellerName}}</h3>
-    <a-carousel
-    arrows
-    dotsClass="slick-dots slick-thumb">
+    <div class="extend-object__info">
+      <h1>{{title}}</h1>
+      <a-button
+      @click="changeLiked"
+      type="default"
+      size="small"
+      icon="heart"
+      class="liked-button extend-object__liked-button"
+      :class="{active__button: liked }">
+        {{titleButton}}
+      </a-button>
+      <div>
+        <a-icon type="calculator" theme="twoTone" class="display-inline-block"/>
+        <h3 class="display-inline-block">{{price}}</h3>
+      </div>
+      <div>
+        <a-icon type="environment" theme="twoTone" class="display-inline-block"/>
+        <h3 class="display-inline-block">{{address}}</h3>
+      </div>
+      <div>
+        <a-icon type="idcard" theme="twoTone" class="display-inline-block"/>
+        <h3 class="display-inline-block">{{sellerName}}</h3>
+      </div>
+    </div>
+    <h3 class="extend-object__description">{{description}}</h3>
+    <a-carousel>
       <a
       slot="customPaging"
       slot-scope="props">
@@ -31,7 +41,6 @@
         :src="image"/>
       </div>
     </a-carousel>
-    <h3 class="extend-object__description">{{description}}</h3>
   </div>
 </template>
 
@@ -92,15 +101,16 @@ export default {
 .ant-carousel {
   max-width: 600px;
   max-height: 900px;
+  padding: 10px 30px 100px 0;
 }
 .img-full {
   max-width: 500px;
   max-height: 500px;
+  padding-bottom: 20px;
 }
 .img-reference {
   max-width: 100px;
   max-height: 100px;
-  padding-top: 20px;
 }
 
 .extend-object__liked-button {
@@ -108,13 +118,22 @@ export default {
   margin-bottom: 15px;
 }
 .extend-object__description {
-  position: absolute;
-  left: 45%;
-  top: 26%;
-  right: 10%;
-  width: auto;
-  padding: 15px;
+  display: inline-block;
+  vertical-align: bottom;
+  max-width: 650px;
+  padding: 10px;
   border: 2px solid dodgerblue;
   border-radius: 5px;
+}
+.extend-object__info {
+  display: inline-block;
+  width: 600px;
+  margin-right: 20px;
+}
+.display-inline-block {
+  display: inline-block;
+}
+a:hover img  {
+  border: 3px solid dodgerblue;
 }
 </style>
