@@ -1,28 +1,28 @@
 <template>
   <div class="object">
-    <div class="object__img">
+    <div class="object-full-img">
       <img
       @click="goToExtend"
       :src="previewImage"
-      class="object__cursor"/>
+      class="object-img"/>
       <a-button
       @click="changeLiked"
       type="default"
       size="small"
       icon="heart"
-      class="liked-button object__liked-button"
+      class="liked-button object-liked-button"
       :class="{active__button: liked }"/>
     </div>
-    <div class="object__info">
+    <div class="object-info">
       <h3
       @click="goToExtend"
-      class="object__reference object__cursor">
+      class="object-reference">
         {{title}}
       </h3>
-      <h3 class="object__price">
+      <h3 class="object-price">
         {{price}}
       </h3>
-      <h3 class="object__address">
+      <h3 class="object-address">
         {{address}}
       </h3>
     </div>
@@ -95,41 +95,42 @@ export default {
   vertical-align: middle;
   color: dodgerblue;
 }
-.object__cursor {
-  cursor: pointer;
-}
 
-.object__reference {
-  color: dodgerblue;
-}
-
-.object__reference:hover {
-  color: red;
-}
-
-.object__info h3 {
+.object-price, .object-address, .object-reference {
   margin: 2px;
 }
 
-.object__price {
+.object-price {
   font-weight: bold;
 }
 
-.object__address {
+.object-address {
   opacity: 0.6;
   font-weight: normal;
 }
 
-.object__img {
+.object-reference {
+  color: dodgerblue;
+}
+
+.object-reference:hover {
+  color: red;
+}
+
+.object-reference, .object-img {
+  cursor: pointer;
+}
+
+.object-full-img {
   position: relative;
 }
 
-.object__img img {
+.object-img {
   width: 100%;
   height: 156px;
 }
 
-.object__liked-button {
+.object-liked-button {
   position: absolute;
   bottom: 85%;
   left: 85%;

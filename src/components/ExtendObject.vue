@@ -1,43 +1,34 @@
 <template>
   <div class="extend-object">
-    <div class="extend-object__info">
+    <div class="extend-object-info">
       <h1>{{title}}</h1>
       <a-button
       @click="changeLiked"
       type="default"
       size="small"
       icon="heart"
-      class="liked-button extend-object__liked-button"
+      class="liked-button extend-object-liked-button"
       :class="{active__button: liked }">
         {{titleButton}}
       </a-button>
-      <div>
-        <a-icon type="calculator" theme="twoTone" class="display-inline-block"/>
-        <h3 class="display-inline-block">{{price}}</h3>
-      </div>
-      <div>
-        <a-icon type="environment" theme="twoTone" class="display-inline-block"/>
-        <h3 class="display-inline-block">{{address}}</h3>
-      </div>
-      <div>
-        <a-icon type="idcard" theme="twoTone" class="display-inline-block"/>
-        <h3 class="display-inline-block">{{sellerName}}</h3>
-      </div>
+      <Info :data="price" type-icon="calculator"/>
+      <Info :data="address" type-icon="environment"/>
+      <Info :data="sellerName" type-icon="idcard"/>
     </div>
-    <h3 class="extend-object__description">{{description}}</h3>
-    <a-carousel>
+    <h3 class="extend-object-description">{{description}}</h3>
+    <a-carousel class="extend-object-carousel">
       <a
       slot="customPaging"
       slot-scope="props">
         <img
-        class="img-reference"
+        class="extend-object-img-reference"
         :src="getImgUrl(props.i)" />
       </a>
       <div
       v-for="(image, index) in images"
       :key="index">
         <img
-        class="img-full"
+        class="extend-object-img-full"
         :src="image"/>
       </div>
     </a-carousel>
@@ -46,9 +37,13 @@
 
 <script>
 import axios from 'axios'
+import Info from './Info'
 
 export default {
   name: 'ExtendObject',
+  components: {
+    Info
+  },
   data: function () {
     return {
       liked: false,
@@ -98,26 +93,34 @@ export default {
 .extend-object {
   margin: 30px;
 }
-.ant-carousel {
+
+.extend-object-carousel {
   max-width: 600px;
   max-height: 900px;
-  padding: 10px 30px 100px 0;
+  padding: 5px 30px 100px 0;
 }
-.img-full {
+
+.extend-object-img-full {
   max-width: 500px;
   max-height: 500px;
   padding-bottom: 20px;
 }
-.img-reference {
+
+.extend-object-img-reference {
   max-width: 100px;
   max-height: 100px;
 }
 
-.extend-object__liked-button {
+.extend-object-img-reference:hover {
+  border: 3px solid dodgerblue;
+}
+
+.extend-object-liked-button {
   position: static;
   margin-bottom: 15px;
 }
-.extend-object__description {
+
+.extend-object-description {
   display: inline-block;
   vertical-align: bottom;
   max-width: 650px;
@@ -125,15 +128,10 @@ export default {
   border: 2px solid dodgerblue;
   border-radius: 5px;
 }
-.extend-object__info {
+
+.extend-object-info {
   display: inline-block;
   width: 600px;
   margin-right: 20px;
-}
-.display-inline-block {
-  display: inline-block;
-}
-a:hover img  {
-  border: 3px solid dodgerblue;
 }
 </style>

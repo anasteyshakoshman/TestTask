@@ -3,10 +3,8 @@
       <a-button
       type="link"
       size="large"
-      @click="goToLiked">
-        Избранное
-      </a-button>
-      <h2>Недвижимость</h2>
+      @click="goToLiked">Избранное</a-button>
+      <h2 class="home-title">Недвижимость</h2>
       <Object
       v-for="objectInfo in objects"
       :key="objectInfo.id"
@@ -47,12 +45,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-decoration: none;
-  margin: 10px;
+  padding: 10px;
 }
-.home h2 {
+
+.home-title {
   font-weight: bold;
-}
-a-button {
-  padding: 4px;
+  margin-left: 10px;
 }
 </style>
