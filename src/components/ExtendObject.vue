@@ -91,19 +91,22 @@ export default {
 @import "../style/button.css";
 
 .extend-object {
-  margin: 30px;
+  margin: 35px;
 }
 
 .extend-object-carousel {
   max-width: 600px;
   max-height: 900px;
   padding: 5px 30px 100px 0;
+  text-align: center;
 }
 
 .extend-object-img-full {
   max-width: 500px;
   max-height: 500px;
   padding-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .extend-object-img-reference {
